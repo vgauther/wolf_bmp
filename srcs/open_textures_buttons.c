@@ -6,7 +6,7 @@
 /*   By: vgauther <vgauther@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/13 18:15:58 by vgauther          #+#    #+#             */
-/*   Updated: 2019/11/28 16:17:11 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/28 20:45:48 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ static int	open_img_opt_button_num(t_var *var, int i)
 	{
 		str[0] = '0' + i - 27;
 		str[1] = 0;
-		s1 = ft_strjoin("./assets/op/", str);
-		s = ft_strjoin(s1, ".bmp");
+		if (!(s1 = ft_strjoin("./assets/op/", str)))
+			exit(0);
+		if (!(s = ft_strjoin(s1, ".bmp")))
+			exit(0);
 		if (!(var->key_texture[i] = SDL_LoadBMP(s)))
 			exit(0);
 		free(s);
@@ -43,8 +45,10 @@ static void	open_img_opt_button_arrow(t_var *var, int i)
 	{
 		str[0] = '0' + i - 36;
 		str[1] = 0;
-		s1 = ft_strjoin("./assets/op/f", str);
-		s = ft_strjoin(s1, ".bmp");
+		if (!(s1 = ft_strjoin("./assets/op/f", str)))
+			exit(0);
+		if (!(s = ft_strjoin(s1, ".bmp")))
+			exit(0);
 		if (!(var->key_texture[i] = SDL_LoadBMP(s)))
 			exit(0);
 		free(s);
@@ -65,8 +69,10 @@ void		open_img_opt_button(t_var *var)
 	{
 		str[0] = 'a' + i;
 		str[1] = 0;
-		s1 = ft_strjoin("./assets/op/", str);
-		s = ft_strjoin(s1, ".bmp");
+		if (!(s1 = ft_strjoin("./assets/op/", str)))
+			exit(0);
+		if (!(s = ft_strjoin(s1, ".bmp")))
+			exit(0);
 		if (!(var->key_texture[i] = SDL_LoadBMP(s)))
 			exit(0);
 		i++;

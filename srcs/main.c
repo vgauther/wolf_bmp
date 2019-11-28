@@ -6,7 +6,7 @@
 /*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 12:41:27 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/11/28 19:03:30 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/28 20:42:18 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ int		**fill_map_struct(t_var var)
 	x_x2_y[2] = -1;
 	if (!(map = malloc(sizeof(int *) * var.y_max)))
 		ft_error(2);
-		ft_putnbr(var.x_max);
-		ft_putstr("\n");
-	ft_putnbr(var.y_max);
-
 	while (++x_x2_y[2] != var.y_max)
 	{
 		if (!(map[x_x2_y[2]] = malloc(sizeof(int) * (var.x_max))))
