@@ -6,7 +6,7 @@
 /*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 16:08:00 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/10/13 18:55:12 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/28 17:29:43 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,43 @@ void	move_key_edit(t_var *var, int *x_y)
 	move_key_edit_button(var, x_y, 4, 370);
 }
 
-void	option_menu(int *x_y, t_var *var, t_player *player)
+void	put_surface(t_var *var, SDL_Surface *s, SDL_Rect dimensions)
 {
-	put_image(var, "./assets/dirt_bg.bmp", create_sdl_rect(0, 0, 0, 0));
+	SDL_Texture	*mon_image;
+
+	mon_image = SDL_CreateTextureFromSurface(var->sdl.render, s);
+	SDL_QueryTexture(mon_image, NULL, NULL, &dimensions.w, &dimensions.h);
+	SDL_SetRenderTarget(var->sdl.render, mon_image);
+	SDL_RenderCopy(var->sdl.render, mon_image, NULL, &dimensions);
+	SDL_DestroyTexture(mon_image);
+}
+
+void	option_menu(int *x_y, t_var *var, t_player *player, t_surf s)
+{
+	put_surface(var, s.dirt_bg, create_sdl_rect(0, 0, 0, 0));
 	if (x_y[0] > 20 && x_y[0] < 199 && x_y[1] > 500 && x_y[1] < 550)
 	{
-		put_image(var, "./assets/done_o.bmp", create_sdl_rect(20, 500, 0, 0));
+		put_surface(var, s.done_o, create_sdl_rect(20, 500, 0, 0));
 		if (var->on == 0)
 		{
 			var->menu_is_act = 0;
 			sdl_clean_screen(var->sdl.render);
-			print_button(x_y, var, player);
+			print_button(x_y, var, player, s);
 		}
 	}
 	else
-		put_image(var, "./assets/done.bmp", create_sdl_rect(20, 500, 0, 0));
+		put_surface(var, s.done, create_sdl_rect(20, 500, 0, 0));
 	if (x_y[0] > 230 && x_y[0] < 409 && x_y[1] > 500 && x_y[1] < 550 \
 		&& var->menu_is_act != 0)
-		put_image(var, "./assets/reset_o.bmp", create_sdl_rect(230, 500, 0, 0));
+		put_surface(var, s.reset_o, create_sdl_rect(230, 500, 0, 0));
 	else if (var->menu_is_act != 0)
-		put_image(var, "./assets/reset.bmp", create_sdl_rect(230, 500, 0, 0));
+		put_surface(var, s.reset, create_sdl_rect(230, 500, 0, 0));
 	move_key_edit(var, x_y);
 }
 
-void	print_button(int *x_y, t_var *var, t_player *player)
+void	print_button(int *x_y, t_var *var, t_player *player, t_surf s)
 {
-	put_image(var, "./assets/main_menu.bmp", create_sdl_rect(0, 0, 0, 0));
+	put_surface(var, s.main_menu, create_sdl_rect(0, 0, 0, 0));
 	if (x_y[0] >= 180 && x_y[0] <= 780 && x_y[1] >= 260 && x_y[1] <= 310)
 	{
 		buttons_menu_play(var, 1);
@@ -84,23 +95,31 @@ void	print_button(int *x_y, t_var *var, t_player *player)
 		if (var->on == 0 && (var->menu_is_act = 2))
 		{
 			sdl_clean_screen(var->sdl.render);
-			option_menu(x_y, var, player);
+			option_menu(x_y, var, player, s);
 		}
 	}
 	else if (var->menu_is_act == 0)
 		buttons_menu_options(var, 0);
 }
 
-void	ft_menu(t_var *var, t_player *player)
+void	ft_menu(t_var *var, t_player *player, t_surf s, int t)
 {
 	int			x_y[2];
 
-	x_y[0] = var->sdl.event.button.x;
-	x_y[1] = var->sdl.event.button.y;
+	if (t == 1)
+	{
+		x_y[0] = var->sdl.event.button.x;
+		x_y[1] = var->sdl.event.button.y;
+	}
+	else
+	{
+		x_y[0] = 0;
+		x_y[1] = 0;
+	}
 	if (var->menu_is_act == 0)
-		print_button(x_y, var, player);
+		print_button(x_y, var, player, s);
 	if (var->menu_is_act == 2)
-		option_menu(x_y, var, player);
+		option_menu(x_y, var, player, s);
 	if (var->menu_is_act == 0 || var->menu_is_act == 2)
 		SDL_RenderPresent(var->sdl.render);
 }

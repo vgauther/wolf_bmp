@@ -6,7 +6,7 @@
 /*   By: mamisdra <mamisdra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 12:08:36 by mamisdra          #+#    #+#             */
-/*   Updated: 2019/11/28 16:14:02 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/28 17:27:32 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,18 @@ typedef struct	s_player
 	int			height;
 }				t_player;
 
+typedef struct	s_surf
+{
+	SDL_Surface *main_menu;
+	SDL_Surface *dirt_bg;
+	SDL_Surface *menu;
+	SDL_Surface *menu_o;
+	SDL_Surface *done;
+	SDL_Surface *done_o;
+	SDL_Surface *reset;
+	SDL_Surface *reset_o;
+}				t_surf;
+
 void			parsing_map(int fd, t_var *var);
 void			buttons_menu_options(t_var *var, int i);
 void			buttons_menu_play(t_var *var, int i);
@@ -112,7 +124,7 @@ void			check_map(t_var *var, int ret, size_t nb_char, char *str);
 void			print_screen(t_var *var, t_player *player);
 void			ft_sdl(t_var *var, SDL_Renderer *render, t_player *player);
 void			ft_move(int key, t_player *pla, SDL_Renderer *ren, t_var *var);
-void			ft_menu(t_var *v, t_player *p);
+void			ft_menu(t_var *var, t_player *player, t_surf s, int t);
 void			ft_error(int i);
 t_rgb			set_color(int r, int g, int b, int a);
 Uint32			set_pixel_color(t_rgb c);
@@ -124,18 +136,18 @@ void			ft_clean_quit(SDL_Renderer *render, SDL_Window *window);
 int				launch_ray(t_player *pl, t_var *var, double al, double beta);
 void			init_a_b_alpha(t_pos *a, t_pos *b, double *alpha);
 void			display(t_var *var, t_player *pl);
-void			option_menu(int *x_y, t_var *var, t_player *player);
-void			print_button(int *x_y, t_var *var, t_player *player);
+void			print_button(int *x_y, t_var *var, t_player *player, t_surf s);
+void			option_menu(int *x_y, t_var *var, t_player *player, t_surf s);
 void			put_image(t_var *var, char *name, SDL_Rect dimensions);
 double			dist_0_1(t_var *var, double alpha, double beta, t_pos b);
 double			dist_1_0(t_var *var, double alpha, double beta, t_pos a);
-void			choose_key(t_var *var, t_player *player);
 void			init_key_move(t_var *var);
-void			change_key(t_var *var, t_player *player);
 void			open_img_opt_button(t_var *var);
 void			put_image_opt(t_var *var, int id, SDL_Rect dimensions);
 void			put_image(t_var *var, char *name, SDL_Rect dimensions);
 int				change_texture_key(int nk);
-void			choose_key(t_var *var, t_player *player);
-void			change_key(t_var *var, t_player *player);
+void			change_key(t_var *var, t_player *player, t_surf s);
+void			choose_key(t_var *var, t_player *player, t_surf s);
+void			put_surface(t_var *var, SDL_Surface *s, SDL_Rect dimensions);
+
 #endif

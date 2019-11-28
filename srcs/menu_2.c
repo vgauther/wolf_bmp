@@ -6,7 +6,7 @@
 /*   By: mamisdra <mamisdra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:06:12 by mamisdra          #+#    #+#             */
-/*   Updated: 2019/11/28 14:45:16 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/28 17:08:26 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	buttons_menu_play(t_var *var, int i)
 		put_image(var, "./assets/jouer_press.bmp", r);
 }
 
-void	reset_after_change_key(t_var *var, t_player *player)
+void	reset_after_change_key(t_var *var, t_player *player, t_surf s)
 {
 	int			x_y[2];
 
@@ -44,12 +44,12 @@ void	reset_after_change_key(t_var *var, t_player *player)
 	{
 		var->select_key = 0;
 		var->on = 2;
-		option_menu(x_y, var, player);
+		option_menu(x_y, var, player, s);
 		SDL_RenderPresent(var->sdl.render);
 	}
 }
 
-void	change_key(t_var *var, t_player *player)
+void	change_key(t_var *var, t_player *player, t_surf s)
 {
 	if (var->select_key == 1 && var->sdl.event.type == SDL_KEYDOWN)
 	{
@@ -71,10 +71,10 @@ void	change_key(t_var *var, t_player *player)
 		var->key.back = var->sdl.event.key.keysym.sym;
 		var->key_id[3] = change_texture_key(var->sdl.event.key.keysym.sym);
 	}
-	reset_after_change_key(var, player);
+	reset_after_change_key(var, player, s);
 }
 
-void	choose_key(t_var *var, t_player *player)
+void	choose_key(t_var *var, t_player *player, t_surf s)
 {
 	int			x_y[2];
 
@@ -93,7 +93,7 @@ void	choose_key(t_var *var, t_player *player)
 		else if (x_y[0] > 230 && x_y[0] < 409 && x_y[1] > 500 && x_y[1] < 550)
 		{
 			init_key_move(var);
-			option_menu(x_y, var, player);
+			option_menu(x_y, var, player, s);
 			SDL_RenderPresent(var->sdl.render);
 		}
 	}
