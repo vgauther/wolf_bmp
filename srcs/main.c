@@ -6,7 +6,7 @@
 /*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 12:41:27 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/11/28 16:11:47 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/28 19:03:30 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,6 @@ void	player_data_set(t_player *player, t_var *var)
 	player->height = BLOCK_SIZE / 2;
 	player->fov = 60;
 	player->angle = 210;
-}
-
-void	ft_init_sdl(t_var *var)
-{
-	var->sdl.window = NULL;
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0)
-		return ;
-	var->sdl.window = SDL_CreateWindow("WOLFCRAFT", SDL_WINDOWPOS_CENTERED, \
-			SDL_WINDOWPOS_CENTERED, SIZE_X, SIZE_Y, 0);
-	var->sdl.render = SDL_CreateRenderer(var->sdl.window, -1, 0);
-	if (!var->sdl.window || !var->sdl.render)
-		return ;
 }
 
 void	init_key_move(t_var *var)

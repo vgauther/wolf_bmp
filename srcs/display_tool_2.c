@@ -6,13 +6,13 @@
 /*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 17:18:45 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/10/09 17:23:40 by mamisdra         ###   ########.fr       */
+/*   Updated: 2019/11/28 19:16:55 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 
-void	intersec_1(t_pos *a, t_var *var, t_player *player, double alpha)
+static void	intersec_1(t_pos *a, t_var *var, t_player *player, double alpha)
 {
 	double xa;
 	double ya;
@@ -34,7 +34,7 @@ void	intersec_1(t_pos *a, t_var *var, t_player *player, double alpha)
 	a->y = sin(alpha) > 0 ? a->y + 1 : a->y + 0;
 }
 
-void	intersec_2(t_pos *b, t_var *var, t_player *player, double alpha)
+static void	intersec_2(t_pos *b, t_var *var, t_player *player, double alpha)
 {
 	double xa;
 	double ya;
@@ -56,7 +56,7 @@ void	intersec_2(t_pos *b, t_var *var, t_player *player, double alpha)
 	b->x = cos(alpha) > 0 ? b->x : b->x + 1;
 }
 
-void	calc_dist(double *dist, t_player *player, t_pos a, t_pos b)
+static void	calc_dist(double *dist, t_player *player, t_pos a, t_pos b)
 {
 	double f1;
 	double f2;

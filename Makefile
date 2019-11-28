@@ -6,7 +6,7 @@
 #    By: vgauther <vgauther@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/18 20:24:21 by vgauther          #+#    #+#              #
-#    Updated: 2019/10/13 18:45:47 by vgauther         ###   ########.fr        #
+#    Updated: 2019/11/28 19:04:13 by vgauther         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRC_NAME = 	main.c\
 			sdl_tools.c \
 			map_parse.c \
 			parse_check.c \
+			ft_init_sdl.c \
 			display_tool.c \
 			display_tool_2.c \
 			open_textures_buttons.c \
