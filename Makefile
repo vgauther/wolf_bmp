@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: vgauther <vgauther@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/02/18 20:24:21 by vgauther          #+#    #+#              #
-#    Updated: 2019/11/30 14:12:50 by vgauther         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 .PHONY: all, $(NAME), clean, fclean, re
 
 NAME = wolf3d
@@ -32,51 +20,65 @@ WHITE=$'\x1b[37m
 CC = gcc
 CC_FLAGS = -g3 -Wall -Wextra -Werror
 
-SDL_PATH = $(shell pwd)/lib/SDL
 SRC_PATH = ./srcs/
 INC_PATH = ./includes/
 OBJ_PATH = ./obj/
 LFT_PATH = ./libft/
 SDLHEADER_PATH = ./lib/SDL/include/SDL2/
+LIBSDL_ROOT = ./libSDL2/
+LIBSDL_PATH = ./libSDL2/lib/
 
-SDL_FLG = -I $(SDLHEADER_PATH) -L $(SDL_PATH)/lib -lSDL2
+SDL_FLG = -L$(LIBSDL_PATH) -lSDL2
+SDL_PATHO = ./SDL2-2.0.10/
+
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
 INC = $(addprefix -I,$(INC_PATH))
+
+CURL_SDL = `curl https://www.libsdl.org/release/SDL2-2.0.10.zip -o sdl2.zip`
+
+ifneq ("$(wildcard $(SDL_PATHO))","")
+SDL_COMPILED = 1
+else
+SDL_COMPILED = 0
+endif
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 INC_NAME = wolf.h
 
-SRC_NAME = 	main.c\
-			move.c \
-			menu.c \
+SRC_NAME = 	display_tool_2.c \
+			display_tool.c \
+			display.c \
 			error.c \
+			ft_init_sdl.c \
+			key_gestion.c \
+			main.c \
+			map_parse.c \
 			menu_2.c \
 			menu_3.c \
-			display.c \
-			texture.c \
-			sdl_tools.c \
-			map_parse.c \
-			parse_check.c \
-			key_gestion.c \
-			ft_init_sdl.c \
-			put_surface.c \
-			display_tool.c \
-			display_tool_2.c \
+			menu.c \
+			move.c \
 			open_textures_buttons.c \
+			parse_check.c \
+			put_surface.c \
+			sdl_tools.c \
+			texture.c \
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C $(LFT_PATH)
-	@make sdl_if
+	@if [ $(SDL_COMPILED) = 0 ]; then \
+	make sdl; \
+	fi
 	@echo "$(YELLOW)[...] Wolf 3D compilation$(END)"
 	@$(CC) -o $(NAME) $(OBJ) -lm -L $(LFT_PATH) -lft $(SDL_FLG)
 	@echo "$(GREEN)[✓] Wolf 3D Done$(END)"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(OBJ_PATH)
+	@mkdir -p $(OBJ_PATH)/xpm
 	@$(CC) $(CC_FLAGS) $(INC) -o $@ -c $<
 
 clean:
@@ -84,14 +86,25 @@ clean:
 	@rm -rf $(OBJ_PATH)
 	@echo "$(RED)[-] Wolf 3D .o cleaned$(END)"
 
-sdl_if:
-	@make -C ./lib
+sdl:
+	$(CURL_SDL)
+	@echo "$(GREEN)------------------------------$(END)"
+	@echo "$(GREEN)--SDL ZIP SOURCES DOWNLOADED--$(END)"
+	@echo "$(GREEN)------------------------------$(END)"
+	unzip sdl2.zip
+	rm sdl2.zip
+	mkdir -p $(LIBSDL_ROOT)
+	cd $(SDL_PATHO) && ./configure --prefix=$(PWD)/$(LIBSDL_ROOT)
+	make -C $(SDL_PATHO)
+	make install -C $(SDL_PATHO)
+	@echo "$(GREEN)------------------------------$(END)"
+	@echo "$(GREEN)---------SDL COMPILED---------$(END)"
+	@echo "$(GREEN)------------------------------$(END)"
 
 fclean:
 	@make clean
 	@make -C $(LFT_PATH) fclean
 	@rm -f $(NAME)
-	@make -C ./lib sdl_clean
 	@echo "$(RED)[-] Wolf 3D executable cleaned$(END)"
 
 
@@ -103,7 +116,6 @@ fcleanr:
 
 fclean_all:
 	@make fclean
-	@make cllib
 
 clean_o:
 	@rm -f $(NAME)
@@ -112,9 +124,11 @@ clean_o:
 re:
 	@make fclean
 	@make all
+
 rr:
 	@make fcleanr
 	@make all
+
 clsdl:
 	@make -C ./lib sdl_clean
 

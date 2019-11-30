@@ -6,7 +6,7 @@
 /*   By: mamisdra <mamisdra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 12:08:36 by mamisdra          #+#    #+#             */
-/*   Updated: 2019/11/30 15:34:23 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/30 17:06:48 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,8 @@ void		ft_clean_quit(t_surf s, t_var *v, t_player *pl)
 		i++;
 	}
 	free(v->m);
-	SDL_DestroyRenderer(v->sdl.render);
 	SDL_DestroyWindow(v->sdl.window);
+	SDL_DestroyRenderer(v->sdl.render);
 	(void)pl;
-	(void)s;
 	SDL_Quit();
 }
