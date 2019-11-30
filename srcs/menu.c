@@ -6,7 +6,7 @@
 /*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 16:08:00 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/11/28 17:29:43 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/30 13:56:16 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,6 @@ void	move_key_edit(t_var *var, int *x_y)
 	move_key_edit_button(var, x_y, 2, 230);
 	move_key_edit_button(var, x_y, 3, 300);
 	move_key_edit_button(var, x_y, 4, 370);
-}
-
-void	put_surface(t_var *var, SDL_Surface *s, SDL_Rect dimensions)
-{
-	SDL_Texture	*mon_image;
-
-	mon_image = SDL_CreateTextureFromSurface(var->sdl.render, s);
-	SDL_QueryTexture(mon_image, NULL, NULL, &dimensions.w, &dimensions.h);
-	SDL_SetRenderTarget(var->sdl.render, mon_image);
-	SDL_RenderCopy(var->sdl.render, mon_image, NULL, &dimensions);
-	SDL_DestroyTexture(mon_image);
 }
 
 void	option_menu(int *x_y, t_var *var, t_player *player, t_surf s)

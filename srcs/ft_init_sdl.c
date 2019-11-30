@@ -6,7 +6,7 @@
 /*   By: vgauther <vgauther@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 19:03:21 by vgauther          #+#    #+#             */
-/*   Updated: 2019/11/28 19:03:42 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/30 13:52:32 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_init_sdl(t_var *var)
 		ft_putstr("SDL_CreateWindow error\n");
 		exit(0);
 	}
-	if (!(var->sdl.render = SDL_CreateRenderer(var->sdl.window, -1, 0)))
+	if (!(var->sdl.render = SDL_CreateRenderer(var->sdl.window, -1, 1)))
 	{
 		ft_putstr("SDL_CreateRenderer error\n");
 		exit(0);

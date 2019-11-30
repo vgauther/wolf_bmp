@@ -6,18 +6,11 @@
 /*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 16:08:00 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/11/28 17:33:48 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/30 14:12:01 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
-
-void	init_var_display(t_var *var, int *token)
-{
-	*token = 0;
-	var->menu_is_act = 0;
-	var->on = 0;
-}
 
 void	menu_button_in_game(t_var *var, t_player *player, t_surf s)
 {
@@ -65,7 +58,9 @@ void	display_3(t_var *var, t_player *pl, t_surf s)
 
 void	display_2(t_var *var, t_player *pl, int *token, t_surf s)
 {
-	init_var_display(var, token);
+	*token = 0;
+	var->menu_is_act = 0;
+	var->on = 0;
 	ft_menu(var, pl, s, 0);
 }
 
@@ -91,29 +86,28 @@ void	loadbmp(t_surf *s)
 
 void	display(t_var *var, t_player *pl)
 {
-	int token;
-	t_surf s;
+	int		token;
+	t_surf	s;
 
 	loadbmp(&s);
 	display_2(var, pl, &token, s);
 	while (SDL_WaitEvent(&var->sdl.event))
 	{
-		if (var->sdl.event.type == SDL_MOUSEMOTION && (var->menu_is_act == 0 || var->menu_is_act == 2))
+		if (var->menu_is_act == 0 || var->menu_is_act == 2)
 		{
-			var->on = 1;
-			ft_menu(var, pl, s, 1);
+			if (var->sdl.event.type == SDL_MOUSEMOTION)
+			{
+				var->on = 1;
+				ft_menu(var, pl, s, 1);
+			}
+			else if (var->sdl.event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				var->on = 0;
+				ft_menu(var, pl, s, 1);
+			}
 		}
-		else if (var->sdl.event.type == SDL_MOUSEBUTTONDOWN && (var->menu_is_act == 0 || var->menu_is_act == 2))
-		{
-			var->on = 0;
-			ft_menu(var, pl, s, 1);
-		}
-		else
-			display_3(var, pl, s);
+		display_3(var, pl, s);
 		if (var->menu_is_act == 2)
-		{
-			change_key(var, pl, s);
-			choose_key(var, pl, s);
-		}
+			key_gestion(var, pl, s);
 	}
 }

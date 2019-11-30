@@ -6,7 +6,7 @@
 /*   By: mamisdra <mamisdra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 12:08:36 by mamisdra          #+#    #+#             */
-/*   Updated: 2019/11/28 19:35:23 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/30 14:14:56 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,10 +145,15 @@ void			change_key(t_var *var, t_player *player, t_surf s);
 void			choose_key(t_var *var, t_player *player, t_surf s);
 
 /*
-** menu.c
+** put_surface.c
 */
 
 void			put_surface(t_var *var, SDL_Surface *s, SDL_Rect dimensions);
+
+/*
+** menu.c
+*/
+
 void			option_menu(int *x_y, t_var *var, t_player *player, t_surf s);
 void			ft_menu(t_var *var, t_player *player, t_surf s, int t);
 void			print_button(int *x_y, t_var *var, t_player *player, t_surf s);
@@ -221,5 +226,11 @@ void			check_map(t_var *var, int ret, size_t nb_char, char *str);
 SDL_Rect		create_sdl_rect(int x, int y, int w, int h);
 void			sdl_clean_screen(SDL_Renderer *rend);
 void			ft_clean_quit(SDL_Renderer *render, SDL_Window *window);
+
+/*
+** key_gestion.c
+*/
+
+void			key_gestion(t_var *var, t_player *pl, t_surf s);
 
 #endif
