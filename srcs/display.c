@@ -6,7 +6,7 @@
 /*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 16:08:00 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/11/30 14:12:01 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/30 15:18:49 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ void	menu_button_in_game(t_var *var, t_player *player, t_surf s)
 void	display_3(t_var *var, t_player *pl, t_surf s)
 {
 	if (var->sdl.event.type == SDL_QUIT)
-		ft_clean_quit(var->sdl.render, var->sdl.window);
+		ft_clean_quit(s, var, pl);
 	else if (var->sdl.event.key.keysym.sym == SDLK_ESCAPE)
-		ft_clean_quit(var->sdl.render, var->sdl.window);
+	{
+		ft_clean_quit(s, var, pl);
+	}
 	else if (var->sdl.event.type == SDL_KEYDOWN && var->menu_is_act == 1)
 		ft_move(var->sdl.event.key.keysym.sym, pl, var->sdl.render, var);
 	if (var->sdl.event.type == SDL_MOUSEMOTION && (var->menu_is_act == 1))

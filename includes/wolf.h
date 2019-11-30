@@ -6,7 +6,7 @@
 /*   By: mamisdra <mamisdra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 12:08:36 by mamisdra          #+#    #+#             */
-/*   Updated: 2019/11/30 14:14:56 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/30 15:19:20 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ void			check_map(t_var *var, int ret, size_t nb_char, char *str);
 
 SDL_Rect		create_sdl_rect(int x, int y, int w, int h);
 void			sdl_clean_screen(SDL_Renderer *rend);
-void			ft_clean_quit(SDL_Renderer *render, SDL_Window *window);
+void			ft_clean_quit(t_surf s, t_var *v, t_player *pl);
 
 /*
 ** key_gestion.c

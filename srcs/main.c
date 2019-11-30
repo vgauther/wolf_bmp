@@ -6,7 +6,7 @@
 /*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 12:41:27 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/11/28 20:42:18 by vgauther         ###   ########.fr       */
+/*   Updated: 2019/11/30 15:10:13 by vgauther         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ int		main(int ac, char **av)
 	ft_init_sdl(&var);
 	open_wall_texture(&var);
 	open_img_opt_button(&var);
+	close(fd);
 	display(&var, &player);
+	while(1);
 	return (0);
 }
