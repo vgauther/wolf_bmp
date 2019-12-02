@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mamisdra <mamisdra@student.42.fr>          +#+  +:+       +#+         #
+#    By: esmoreau <esmoreau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/11/08 18:54:11 by mamisdra          #+#    #+#              #
-#    Updated: 2019/09/25 13:48:56 by vgauther         ###   ########.fr        #
+#    Created: 2019/11/30 17:28:06 by esmoreau          #+#    #+#              #
+#    Updated: 2019/11/30 17:32:41 by esmoreau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sdl_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamisdra <mamisdra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esmoreau <esmoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 12:08:36 by mamisdra          #+#    #+#             */
-/*   Updated: 2019/11/30 17:06:48 by vgauther         ###   ########.fr       */
+/*   Created: 2019/11/30 17:28:06 by esmoreau          #+#    #+#             */
+/*   Updated: 2019/11/30 17:34:37 by esmoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 
-void	freeloadbmp(t_surf s)
+void		freeloadbmp(t_surf s)
 {
 	SDL_FreeSurface(s.main_menu);
 	SDL_FreeSurface(s.dirt_bg);
@@ -45,21 +45,21 @@ void		sdl_clean_screen(SDL_Renderer *rend)
 ** destroy/free render + destroy/free window
 */
 
-void		ft_clean_quit(t_surf s, t_var *v, t_player *pl)
+void		free_var(t_var *v)
 {
 	int i;
 
 	i = 0;
 	while (i < 4)
 	{
-			SDL_FreeSurface(v->wall_texture[i]);
-			i++;
+		SDL_FreeSurface(v->wall_texture[i]);
+		i++;
 	}
 	i = 0;
 	while (i < 41)
 	{
-			SDL_FreeSurface(v->key_texture[i]);
-			i++;
+		SDL_FreeSurface(v->key_texture[i]);
+		i++;
 	}
 	i = 0;
 	while (v->map[i])
@@ -68,8 +68,15 @@ void		ft_clean_quit(t_surf s, t_var *v, t_player *pl)
 		i++;
 	}
 	free(v->map);
-	freeloadbmp(s);
+}
+
+void		ft_clean_quit(t_surf s, t_var *v, t_player *pl)
+{
+	int i;
+
 	i = 0;
+	free_var(v);
+	freeloadbmp(s);
 	while (i < v->y_max)
 	{
 		free(v->m[i]);
@@ -80,4 +87,5 @@ void		ft_clean_quit(t_surf s, t_var *v, t_player *pl)
 	SDL_DestroyRenderer(v->sdl.render);
 	(void)pl;
 	SDL_Quit();
+	exit(0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mamisdra <mamisdra@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esmoreau <esmoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 18:11:49 by mamisdra          #+#    #+#             */
-/*   Updated: 2019/03/19 18:16:53 by mamisdra         ###   ########.fr       */
+/*   Created: 2019/11/30 17:28:06 by esmoreau          #+#    #+#             */
+/*   Updated: 2019/11/30 17:30:23 by esmoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -102,6 +102,8 @@ sdl:
 	@echo "$(GREEN)------------------------------$(END)"
 
 fclean:
+	@rm -rf $(SDL_PATHO)
+	@rm -rf $(LIBSDL_ROOT)
 	@make clean
 	@make -C $(LFT_PATH) fclean
 	@rm -f $(NAME)

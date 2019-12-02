@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin_free_s1s2_newline.c                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ravernhe <ravernhe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esmoreau <esmoreau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/12 13:10:30 by ravernhe          #+#    #+#             */
-/*   Updated: 2019/10/02 15:57:51 by mamisdra         ###   ########.fr       */
+/*   Created: 2019/11/30 17:28:06 by esmoreau          #+#    #+#             */
+/*   Updated: 2019/11/30 17:31:30 by esmoreau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

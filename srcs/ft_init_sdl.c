@@ -25,7 +25,7 @@ void	ft_init_sdl(t_var *var)
 		ft_putstr("SDL_CreateWindow error\n");
 		exit(0);
 	}
-	if (!(var->sdl.render = SDL_CreateRenderer(var->sdl.window, -1, 0)))
+	if (!(var->sdl.render = SDL_CreateRenderer(var->sdl.window, -1, 1)))
 	{
 		ft_putstr("SDL_CreateRenderer error\n");
 		exit(0);
